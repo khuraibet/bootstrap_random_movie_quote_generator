@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <title>Random Movie Quote Generator</title>
+        <script>
+            const QUOTE_BANK = [
+                {
+                    quote: "Frankly, my dear, I don't give a damn.",
+                    author: "Gone With The Wind"
+                }, {
+                    quote: "I'm gonna make him an offer her can't refuse.",
+                    author: "The Godfather"
+                }, {
+                    quote: "Toto, I've a feeling we're not in Kansas anymore.",
+                    author: "The Wizard of Oz"
+                }, {
+                    quote: "Here's looking at you, kid.",
+                    author: "Casablanca"
+                }, {
+                    quote: "May the Force be with you.",
+                    author: "Star Wars"
+                }, {
+                    quote: "You talkin' to me?",
+                    author: "Taxi Driver"
+                }, {
+                    quote: "I love the smell of napalm in the morning.",
+                    author: "Apocalypse Now"
+                }, {
+                    quote: "Show me the money!",
+                    author: "Jerry Maguire"
+                }, {
+                    quote: "You can't handle the truth!",
+                    author: "A Few Good Men"
+                }, {
+                    quote: "You're gonna need a bigger boat.",
+                    author: "Jaws"
+                }, {
+                    quote: "I'll be back.",
+                    author: "The Terminator"
+                }, {
+                    quote: "I see dead people.",
+                    author: "The Sixth Sense"
+                }, {
+                    quote: "Houston, we have a problem.",
+                    author: "Apollo 13"
+                }, {
+                    quote: "There's no crying in baseball!",
+                    author: "A League of Their Own"
+                }, {
+                    quote: "Greed, for lack of a better word, is good.",
+                    author: "Wall Street"
+                }, {
+                    quote: "Take your stinking paws off me, you damned dirty ape!",
+                    author: "Planet of the Apes"
+                }, {
+                    quote: "Here's Johnny!",
+                    author: "The Shining"
+                }, {
+                    quote: "They're here!",
+                    author: "Poltergeist"
+                }, {
+                    quote: "Forget it, Jake, it's Chinatown.",
+                    author: "Chinatown"
+                }, {
+                    quote: "I have always depended on the kindness of strangers.",
+                    author: "A Streetcar Named Desire"
+                }, {
+                    quote: "Open the pod bay doors, HAL.",
+                    author: "2001: A Space Odyssey"
+                }, {
+                    quote: "I feel the need... The need for speed!",
+                    author: "Top Gun"
+                }, {
+                    quote: "Nobody puts Baby in a corner.",
+                    author: "Dirty Dancing"
+                }, {
+                    quote: "I'm the king of the world!",
+                    author: "Titanic"
+                }, 
+            ]
+            window.onload = initialQuote;
+            function initialQuote() {
+                generateQuote();
+            }
+
+            function generateQuote() {
+                let quoteSize = QUOTE_BANK.length;
+                let randomIndex = Math.floor(Math.random() * quoteSize);
+                let randomQuoteData = QUOTE_BANK[randomIndex]; 
+
+                let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text=%22";
+                
+                // Add the Quote
+                let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+                twitterLink += quoteInApiFormat;
+                
+                // Add the Author
+                let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+                twitterLink += " - " + authorInApiFormat;
+                
+                document.getElementById("tweet-quote").href = twitterLink;
+                document.getElementById("text").innerText = randomQuoteData.quote;
+                document.getElementById("author").innerText = randomQuoteData.author;
+            }
+        </script>
+    </head>
+
+    <body style="font-family: 'Courier'">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-8 offset-md-2 text-center">
+                    <wrapper id="quote-box">
+                        <div class="card">
+                            <div class="card-header text-left font-weight-bold">Random Movie Quote Generator</div>
+                            <div class="card-body">
+                            <h5 class="card-title"><div id="text"></div></h5>
+                            <p class="card-text"><div id="author" class="font-italic"></div></p>
+                            <button id="new-quote" onClick="generateQuote();" class="btn btn-success text-center">New Quote</button>
+                            <a target="_blank" href="#" id="tweet-quote" class="btn btn-primary text-center">Tweet Quote</a>
+                            </div>
+                        </div>
+                    </wrapper>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
+
